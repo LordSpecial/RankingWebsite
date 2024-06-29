@@ -2,6 +2,7 @@
     position: relative;
     width: 60px;
     height: 34px;
+    display: inline-block;
 }
 
 .toggle-switch input {
@@ -58,10 +59,26 @@ input:checked + .slider:before {
     color: #fff;
 }
 
-input:checked + .slider .icon {
+.sun-icon {
     left: 6px;
 }
 
-.slider .icon {
+.moon-icon {
     right: 6px;
+}
+
+input:checked + .slider .sun-icon {
+    opacity: 0;
+}
+
+input:checked + .slider .moon-icon {
+    opacity: 1;
+}
+
+.sun-icon {
+    opacity: 1;
+}
+
+.moon-icon {
+    opacity: 0;
 }

@@ -62,8 +62,11 @@ const Controls: React.FC<ControlsProps> = ({
                     <div className="toggle-switch">
                         <input type="checkbox" checked={darkMode} onChange={onDarkModeChange} />
                         <span className="slider round">
-                            <span className="icon">
-                                <FontAwesomeIcon icon={darkMode ? faMoon : faSun} />
+                            <span className="icon sun-icon">
+                                <FontAwesomeIcon icon={faSun} />
+                            </span>
+                            <span className="icon moon-icon">
+                                <FontAwesomeIcon icon={faMoon} />
                             </span>
                         </span>
                     </div>

@@ -28,6 +28,7 @@
     flex-direction: column;
     justify-content: flex-end; /* Align text to bottom */
     border-radius: 15px;
+    cursor: pointer; /* Add pointer cursor for hover */
 }
 
 .card:hover .card-body {

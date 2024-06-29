@@ -1,17 +1,19 @@
 import React from 'react';
-import MediaItem from './MediaItem';
+import MediaItemComponent from './MediaItem';
+import { MediaItem } from '../types';
 
 interface MediaGridProps {
-    mediaItems: any[];
+    mediaItems: MediaItem[];
     mediaType: 'movie' | 'tv' | 'anime';
     itemsPerRow: number;
+    darkMode: boolean;
 }
 
-const MediaGrid: React.FC<MediaGridProps> = ({ mediaItems, mediaType, itemsPerRow }) => {
+const MediaGrid: React.FC<MediaGridProps> = ({ mediaItems, mediaType, itemsPerRow, darkMode }) => {
     return (
         <div className={`media-grid grid-cols-${itemsPerRow}`}>
             {mediaItems.map(item => (
-                <MediaItem key={item.id} item={item} mediaType={mediaType} />
+                <MediaItemComponent key={item.id} item={item} mediaType={mediaType} darkMode={darkMode} />
             ))}
         </div>
     );
