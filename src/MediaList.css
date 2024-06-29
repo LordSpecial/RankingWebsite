@@ -1,0 +1,76 @@
+.card-img-top {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    transition: filter 0.3s; /* Add transition for smooth blur effect */
+}
+
+.card:hover .card-img-top {
+    filter: blur(2px); /* Apply blur effect to the image */
+}
+
+.position-absolute {
+    border-radius: 0.25rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(22, 12, 40, 0.6); /* Slightly dark background using palette color */
+    color: #fffffa; /* Light text */
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align text to bottom */
+    border-radius: 15px;
+}
+
+.card:hover .card-body {
+    opacity: 1;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px;
+    text-align: justify; /* Justify text */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Unique colors for labels */
+.movie-label {
+    background-color: #725ac1; /* Color from palette */
+    color: #fffffa; /* White text */
+    font-weight: bold; /* Bold text */
+}
+
+.tv-label {
+    background-color: #4fb0c6; /* Color from palette */
+    color: #fffffa; /* White text */
+    font-weight: bold; /* Bold text */
+}
+
+.anime-label {
+    background-color: #3e442b; /* Color from palette */
+    color: #fffffa; /* White text */
+    font-weight: bold; /* Bold text */
+}
+
+/* Ensuring hover text color is light */
+.card:hover .card-title,
+.card:hover .card-text {
+    color: #fffffa !important; /* Ensuring light text color */
+}
