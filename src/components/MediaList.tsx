@@ -15,7 +15,8 @@ const MediaList: React.FC = () => {
     const [mediaType, setMediaType] = useState<'movie' | 'tv' | 'anime'>('movie');
     const [page, setPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
-    const [itemsPerRow, setItemsPerRow] = useState(4);
+    const [itemsPerRow, setItemsPerRow] = useState(6); // Default to 6 items per row
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -75,67 +76,82 @@ const MediaList: React.FC = () => {
         setItemsPerRow(parseInt(event.target.value, 10));
     };
 
+    const handleDarkModeChange = () => {
+        setDarkMode(prevMode => !prevMode);
+        if (darkMode) {
+            document.body.classList.remove('dark-mode');
+        } else {
+            document.body.classList.add('dark-mode');
+        }
+    };
+
     return (
-        <div className="container">
-            <div className="row justify-content-between align-items-center mb-4">
-                <div className="col-auto">
-                    <div className="btn-group" role="group">
-                        <input type="radio" className="btn-check" name="mediaType" id="movie" checked={mediaType === 'movie'} onChange={() => handleMediaTypeChange('movie')} />
-                        <label className="btn btn-outline-primary" htmlFor="movie">Movies</label>
+        <div className={`container ${darkMode ? 'dark-mode' : ''}`}>
+            <div className="content-wrapper">
+                <div className="row justify-content-between align-items-center mb-4">
+                    <div className="col-auto">
+                        <div className="btn-group" role="group">
+                            <input type="radio" className="btn-check" name="mediaType" id="movie" checked={mediaType === 'movie'} onChange={() => handleMediaTypeChange('movie')} />
+                            <label className="btn btn-outline-primary" htmlFor="movie">Movies</label>
 
-                        <input type="radio" className="btn-check" name="mediaType" id="tv" checked={mediaType === 'tv'} onChange={() => handleMediaTypeChange('tv')} />
-                        <label className="btn btn-outline-primary" htmlFor="tv">TV Shows</label>
+                            <input type="radio" className="btn-check" name="mediaType" id="tv" checked={mediaType === 'tv'} onChange={() => handleMediaTypeChange('tv')} />
+                            <label className="btn btn-outline-primary" htmlFor="tv">TV Shows</label>
 
-                        <input type="radio" className="btn-check" name="mediaType" id="anime" checked={mediaType === 'anime'} onChange={() => handleMediaTypeChange('anime')} />
-                        <label className="btn btn-outline-primary" htmlFor="anime">Anime</label>
-                    </div>
-                </div>
-                <div className="col-auto">
-                    <label className="me-2">
-                        Items per page:
-                        <select className="form-select" value={itemsPerPage} onChange={handleItemsPerPageChange}>
-                            <option value={10}>10</option>
-                            <option value={25}>25</option>
-                            <option value={50}>50</option>
-                            <option value={100}>100</option>
-                        </select>
-                    </label>
-                    <label>
-                        Items per row:
-                        <select className="form-select" value={itemsPerRow} onChange={handleItemsPerRowChange}>
-                            <option value={2}>2</option>
-                            <option value={4}>4</option>
-                            <option value={6}>6</option>
-                            <option value={8}>8</option>
-                            <option value={10}>10</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
-            <h2 className="mb-4">Top {mediaType === 'movie' ? 'Movies' : mediaType === 'tv' ? 'TV Shows' : 'Anime'}</h2>
-            <div className={`row row-cols-1 row-cols-sm-2 row-cols-md-${itemsPerRow} g-4`}>
-                {mediaItems.map(item => (
-                    <div className="col" key={item.id}>
-                        <div className="card h-100">
-                            <div className={`position-absolute top-0 start-0 px-2 py-1 ${mediaType === 'movie' ? 'movie-label' : mediaType === 'tv' ? 'tv-label' : 'anime-label'}`}>
-                                {mediaType === 'movie' ? 'Movie' : mediaType === 'tv' ? 'TV Show' : 'Anime'}
-                            </div>
-                            <img
-                                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                                className="card-img-top"
-                                alt={item.title || item.name}
-                            />
-                            <div className="card-body d-flex flex-column">
-                                <h5 className="card-title">{item.title || item.name}</h5>
-                                <p className="card-text">{item.overview}</p>
-                            </div>
+                            <input type="radio" className="btn-check" name="mediaType" id="anime" checked={mediaType === 'anime'} onChange={() => handleMediaTypeChange('anime')} />
+                            <label className="btn btn-outline-primary" htmlFor="anime">Anime</label>
                         </div>
                     </div>
-                ))}
-            </div>
-            <div className="d-flex justify-content-center mt-4">
-                <button className="btn btn-primary me-2" onClick={handlePrevPage} disabled={page === 1}>Previous</button>
-                <button className="btn btn-primary" onClick={handleNextPage}>Next</button>
+                    <div className="col-auto">
+                        <label className="me-2">
+                            Items per page:
+                            <select className="form-select" value={itemsPerPage} onChange={handleItemsPerPageChange}>
+                                <option value={10}>10</option>
+                                <option value={25}>25</option>
+                                <option value={50}>50</option>
+                                <option value={100}>100</option>
+                            </select>
+                        </label>
+                        <label className="me-2">
+                            Items per row:
+                            <select className="form-select" value={itemsPerRow} onChange={handleItemsPerRowChange}>
+                                <option value={2}>2</option>
+                                <option value={4}>4</option>
+                                <option value={6}>6</option>
+                                <option value={8}>8</option>
+                                <option value={10}>10</option>
+                            </select>
+                        </label>
+                        <label>
+                            Dark Mode:
+                            <input type="checkbox" className="form-check-input ms-2" checked={darkMode} onChange={handleDarkModeChange} />
+                        </label>
+                    </div>
+                </div>
+                <h2 className="mb-4">Top {mediaType === 'movie' ? 'Movies' : mediaType === 'tv' ? 'TV Shows' : 'Anime'}</h2>
+                <div className={`media-grid grid-cols-${itemsPerRow}`}>
+                    {mediaItems.map(item => (
+                        <div className="col" key={item.id}>
+                            <div className="card h-100">
+                                <div className={`position-absolute top-0 start-0 px-2 py-1 ${mediaType === 'movie' ? 'movie-label' : mediaType === 'tv' ? 'tv-label' : 'anime-label'}`}>
+                                    {mediaType === 'movie' ? 'Movie' : mediaType === 'tv' ? 'TV Show' : 'Anime'}
+                                </div>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                                    className="card-img-top"
+                                    alt={item.title || item.name}
+                                />
+                                <div className="card-body d-flex flex-column">
+                                    <h5 className="card-title">{item.title || item.name}</h5>
+                                    <p className="card-text">{item.overview}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="d-flex justify-content-center mt-4">
+                    <button className="btn btn-primary me-2" onClick={handlePrevPage} disabled={page === 1}>Previous</button>
+                    <button className="btn btn-primary" onClick={handleNextPage}>Next</button>
+                </div>
             </div>
         </div>
     );

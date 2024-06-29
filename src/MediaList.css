@@ -74,3 +74,37 @@
 .card:hover .card-text {
     color: #fffffa !important; /* Ensuring light text color */
 }
+
+/* Custom CSS Grid for flexible layout */
+.media-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-cols-8 {
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.grid-cols-10 {
+    grid-template-columns: repeat(10, 1fr);
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .container,
