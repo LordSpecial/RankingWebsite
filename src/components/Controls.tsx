@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import '../Controls.css';
 
 interface ControlsProps {
     mediaType: 'movie' | 'tv' | 'anime';
@@ -56,8 +59,14 @@ const Controls: React.FC<ControlsProps> = ({
                     </select>
                 </label>
                 <label>
-                    Dark Mode:
-                    <input type="checkbox" className="form-check-input ms-2" checked={darkMode} onChange={onDarkModeChange} />
+                    <div className="toggle-switch">
+                        <input type="checkbox" checked={darkMode} onChange={onDarkModeChange} />
+                        <span className="slider round">
+                            <span className="icon">
+                                <FontAwesomeIcon icon={darkMode ? faMoon : faSun} />
+                            </span>
+                        </span>
+                    </div>
                 </label>
             </div>
         </div>
