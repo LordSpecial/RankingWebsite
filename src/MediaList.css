@@ -1,15 +1,18 @@
+.card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
 .card-img-top {
     border-top-left-radius: calc(0.25rem - 1px);
     border-top-right-radius: calc(0.25rem - 1px);
-    transition: filter 0.3s; /* Add transition for smooth blur effect */
+    transition: filter 0.3s, background-color 0.3s;
 }
 
 .card:hover .card-img-top {
-    filter: blur(2px); /* Apply blur effect to the image */
-}
-
-.position-absolute {
-    border-radius: 0.25rem;
+    filter: blur(2px);
 }
 
 .card-body {
@@ -23,16 +26,16 @@
     background: rgba(22, 12, 40, 0.6); /* Slightly dark background using palette color */
     color: #fffffa; /* Light text */
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, background-color 0.3s;
     display: flex;
     flex-direction: column;
     justify-content: flex-end; /* Align text to bottom */
     border-radius: 15px;
-    cursor: pointer; /* Add pointer cursor for hover */
 }
 
 .card:hover .card-body {
     opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay on hover */
 }
 
 .card-title {
