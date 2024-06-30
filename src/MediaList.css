@@ -46,7 +46,7 @@
 
 .card-text {
     font-size: 14px;
-    text-align: justify; /* Justify text */
+    text-align: left;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
@@ -59,18 +59,30 @@
     background-color: #725ac1; /* Color from palette */
     color: #fffffa; /* White text */
     font-weight: bold; /* Bold text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure it is above other elements */
 }
 
 .tv-label {
     background-color: #4fb0c6; /* Color from palette */
     color: #fffffa; /* White text */
     font-weight: bold; /* Bold text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure it is above other elements */
 }
 
 .anime-label {
     background-color: #3e442b; /* Color from palette */
     color: #fffffa; /* White text */
     font-weight: bold; /* Bold text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Ensure it is above other elements */
 }
 
 /* Ensuring hover text color is light */

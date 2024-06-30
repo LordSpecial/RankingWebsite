@@ -42,19 +42,20 @@ const MediaList: React.FC = () => {
                 const items = combinedResults.slice(sliceStart, sliceStart + itemsPerPage);
 
                 // Fetch additional details for each item
-                const detailedPromises = items.map(item => fetch(`https://api.themoviedb.org/3/${mediaType}/${item.id}?api_key=${apiKey}&language=en-US&append_to_response=credits`)
-                    .then(response => response.json())
-                    .then(data => ({
-                        ...item,
-                        runtime: data.runtime,
-                        genres: data.genres,
-                        director: data.credits.crew.find((crewMember: CrewMember) => crewMember.job === 'Director')?.name,
-                        cast: data.credits.cast.map((castMember: CastMember) => ({
-                            name: castMember.name,
-                            character: castMember.character
-                        })),
-                        tags: data.keywords?.keywords?.map((keyword: Keyword) => keyword.name)
-                    }))
+                const detailedPromises = items.map(item =>
+                    fetch(`https://api.themoviedb.org/3/${mediaType === 'anime' ? 'tv' : mediaType}/${item.id}?api_key=${apiKey}&language=en-US&append_to_response=credits`)
+                        .then(response => response.json())
+                        .then(data => ({
+                            ...item,
+                            runtime: data.runtime,
+                            genres: data.genres,
+                            director: data.credits ? data.credits.crew.find((crewMember: CrewMember) => crewMember.job === 'Director')?.name : 'N/A',
+                            cast: data.credits ? data.credits.cast.map((castMember: CastMember) => ({
+                                name: castMember.name,
+                                character: castMember.character
+                            })) : [],
+                            tags: data.keywords?.keywords?.map((keyword: Keyword) => keyword.name) || []
+                        }))
                 );
 
                 const detailedItems = await Promise.all(detailedPromises);

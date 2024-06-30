@@ -12,7 +12,7 @@
 }
 
 .modal-content {
-    background: #fff; /* Solid background for light mode */
+    background: #fff; /* Light mode background */
     border-radius: 8px;
     width: 80%;
     max-width: 800px;
@@ -106,8 +106,8 @@
 }
 
 .dark-mode .modal-content {
-    background: #333; /* Solid background for dark mode */
-    color: #e0e0e0;
+    background: #333; /* Dark mode background */
+    color: #e0e0e0; /* Dark mode text color */
 }
 
 .dark-mode .close-button {

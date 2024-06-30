@@ -56,15 +56,18 @@ input:checked + .slider:before {
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
-    color: #fff;
+    color: #121212;
+    transition: opacity 0.4s;
 }
 
 .sun-icon {
     left: 6px;
+    opacity: 1;
 }
 
 .moon-icon {
     right: 6px;
+    opacity: 0;
 }
 
 input:checked + .slider .sun-icon {
@@ -73,12 +76,4 @@ input:checked + .slider .sun-icon {
 
 input:checked + .slider .moon-icon {
     opacity: 1;
-}
-
-.sun-icon {
-    opacity: 1;
-}
-
-.moon-icon {
-    opacity: 0;
 }
