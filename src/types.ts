@@ -1,3 +1,4 @@
+// types.ts
 export interface MediaItem {
     id: number;
     title?: string;
@@ -11,7 +12,7 @@ export interface MediaItem {
     runtime?: number;
     genres: { id: number; name: string }[];
     director?: string;
-    cast?: { name: string; character: string }[];
+    cast?: { name: string; character: string; profile_path?: string }[];
     tags?: string[];
 }
 
@@ -23,6 +24,7 @@ export interface CrewMember {
 export interface CastMember {
     name: string;
     character: string;
+    profile_path?: string;
 }
 
 export interface Keyword {

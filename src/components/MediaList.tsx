@@ -1,3 +1,4 @@
+// MediaList.tsx
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../MediaList.css';
@@ -50,9 +51,10 @@ const MediaList: React.FC = () => {
                             runtime: data.runtime,
                             genres: data.genres,
                             director: data.credits ? data.credits.crew.find((crewMember: CrewMember) => crewMember.job === 'Director')?.name : 'N/A',
-                            cast: data.credits ? data.credits.cast.map((castMember: CastMember) => ({
+                            cast: data.credits ? data.credits.cast.slice(0, 10).map((castMember: CastMember) => ({
                                 name: castMember.name,
-                                character: castMember.character
+                                character: castMember.character,
+                                profile_path: castMember.profile_path
                             })) : [],
                             tags: data.keywords?.keywords?.map((keyword: Keyword) => keyword.name) || []
                         }))

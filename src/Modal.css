@@ -69,21 +69,31 @@
 
 .modal-body {
     display: flex;
-    align-items: flex-start;
-    padding: 220px 20px 20px 20px; /* Adjust padding to account for the header */
+    padding: 20px;
     position: relative;
     z-index: 2;
     background-color: inherit; /* Ensure solid background for the content */
 }
 
-.modal-image {
-    max-width: 200px;
+.modal-image-container {
+    flex: 0 0 auto;
     margin-right: 20px;
+}
+
+.modal-details-container {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.modal-image {
+    width: 200px; /* Increased size for the poster */
     border-radius: 8px;
 }
 
 .modal-details {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px; /* Limit the width of the details container */
 }
 
 .modal-details h2 {
@@ -92,6 +102,10 @@
 
 .modal-details p {
     margin: 0 0 10px 0;
+}
+
+.overview {
+    margin-bottom: 20px; /* Additional spacing for the overview */
 }
 
 .tags {
