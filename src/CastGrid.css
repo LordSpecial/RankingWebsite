@@ -1,26 +1,33 @@
 /* CastGrid.css */
 .cast-grid-container {
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding: 10px 0;
-    max-height: 150px;
+    overflow-x: auto; /* Enable horizontal scrolling by default */
+    overflow-y: hidden; /* Hide vertical scrollbar by default */
+    white-space: nowrap; /* Prevent wrapping */
+    max-height: 200px; /* Set a maximum height for the cast grid */
+    margin-bottom: 20px; /* Add padding below the cast grid */
+    transition: overflow-y 0.3s; /* Smooth transition for scrollbar */
+}
+
+.cast-grid-container:hover {
+    overflow-y: auto; /* Enable vertical scrolling on hover */
 }
 
 .cast-grid {
     display: flex;
+    flex-direction: row; /* Keep the grid horizontal */
 }
 
 .cast-member {
     flex: 0 0 120px; /* Set a fixed width */
     margin-right: 10px;
     text-align: center;
+    overflow: hidden; /* Ensure text does not overflow */
 }
 
 .cast-headshot {
-    border-radius: 20%;
-    width: 50%;
-    height: 50%;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
     margin-bottom: 5px;
 }
@@ -39,4 +46,50 @@
     white-space: normal; /* Allow wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Ellipsis for overflow text */
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+.cast-grid-container::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+    height: 8px; /* Set the height of the scrollbar */
+}
+
+.cast-grid-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.cast-grid-container::-webkit-scrollbar-thumb {
+    background: #007bff; /* Accent color for the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.cast-grid-container::-webkit-scrollbar-thumb:hover {
+    background: #0056b3; /* Darker accent color when hovering over the scrollbar thumb */
+}
+
+/* Custom scrollbar styles for Firefox */
+.cast-grid-container {
+    scrollbar-width: thin; /* Set the width of the scrollbar */
+    scrollbar-color: #007bff #f1f1f1; /* Set the thumb and track color */
+}
+
+/* Styling the scrollbar track and thumb for Firefox */
+.cast-grid-container::-moz-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+    height: 8px; /* Set the height of the scrollbar */
+}
+
+.cast-grid-container::-moz-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.cast-grid-container::-moz-scrollbar-thumb {
+    background: #007bff; /* Accent color for the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.cast-grid-container::-moz-scrollbar-thumb:hover {
+    background: #0056b3; /* Darker accent color when hovering over the scrollbar thumb */
 }

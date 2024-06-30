@@ -23,13 +23,11 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
 
     return (
         <div className={`modal-overlay ${darkMode ? 'dark-mode' : ''}`}>
-            <div className="modal-content">
+            <div className="modal-container">
+                <div className="modal-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${item.backdrop_path})` }}></div>
                 <button className="close-button" onClick={onClose}>
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
-                <div className="modal-header">
-                    <img src={`https://image.tmdb.org/t/p/w1280${item.backdrop_path}`} alt={item.title || item.name} className="modal-banner" />
-                </div>
                 <div className="modal-body">
                     <div className="modal-image-container">
                         <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title || item.name} className="modal-image" />

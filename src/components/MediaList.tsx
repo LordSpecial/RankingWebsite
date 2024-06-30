@@ -51,7 +51,7 @@ const MediaList: React.FC = () => {
                             runtime: data.runtime,
                             genres: data.genres,
                             director: data.credits ? data.credits.crew.find((crewMember: CrewMember) => crewMember.job === 'Director')?.name : 'N/A',
-                            cast: data.credits ? data.credits.cast.slice(0, 10).map((castMember: CastMember) => ({
+                            cast: data.credits ? data.credits.cast.slice(0, 15).map((castMember: CastMember) => ({
                                 name: castMember.name,
                                 character: castMember.character,
                                 profile_path: castMember.profile_path

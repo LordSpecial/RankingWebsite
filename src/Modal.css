@@ -11,9 +11,9 @@
     z-index: 1000;
 }
 
-.modal-content {
-    background: #fff; /* Light mode background */
-    border-radius: 8px;
+.modal-container {
+    background: rgba(255, 255, 255, 1); /* Light mode background solid */
+    border-radius: 16px; /* Apply rounded corners to the modal */
     width: 80%;
     max-width: 800px;
     max-height: 70vh; /* 70% of the screen height */
@@ -21,6 +21,37 @@
     position: relative;
     z-index: 2;
     color: #000; /* Light mode text color */
+    padding: 0;
+}
+
+.dark-mode .modal-container {
+    background: rgba(51, 51, 51, 1); /* Dark mode background solid */
+    color: #e0e0e0; /* Dark mode text color */
+}
+
+.modal-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Fixed height for the background image */
+    background-size: cover; /* Ensure the background image covers the width */
+    background-position: center; /* Center the background image */
+    border-top-left-radius: 16px; /* Apply rounded corners to the top */
+    border-top-right-radius: 16px; /* Apply rounded corners to the top */
+    z-index: 1;
+}
+
+.modal-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent 80%); /* Gradient overlay for smooth transition */
+    border-top-left-radius: 16px; /* Match the border radius */
+    border-top-right-radius: 16px; /* Match the border radius */
 }
 
 .close-button {
@@ -47,32 +78,15 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-header {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    z-index: 1;
-}
-
-.modal-banner {
-    width: 100%;
-    height: auto;
-    opacity: 0.5; /* Make the banner slightly transparent */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
 .modal-body {
     display: flex;
     padding: 20px;
+    padding-top: 220px; /* Adjust padding to provide spacing from the top */
     position: relative;
     z-index: 2;
     background-color: inherit; /* Ensure solid background for the content */
+    border-bottom-left-radius: 16px; /* Round bottom corners */
+    border-bottom-right-radius: 16px; /* Round bottom corners */
 }
 
 .modal-image-container {
@@ -87,7 +101,7 @@
 
 .modal-image {
     width: 200px; /* Increased size for the poster */
-    border-radius: 8px;
+    border-radius: 0; /* Ensure the poster image does not have rounded corners */
 }
 
 .modal-details {
@@ -118,11 +132,6 @@
     border-radius: 4px;
     padding: 5px 10px;
     margin: 2px;
-}
-
-.dark-mode .modal-content {
-    background: #333; /* Dark mode background */
-    color: #e0e0e0; /* Dark mode text color */
 }
 
 .dark-mode .close-button {
