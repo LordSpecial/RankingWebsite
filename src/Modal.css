@@ -20,6 +20,7 @@
     overflow-y: auto; /* Add vertical scrollbar when content exceeds height */
     position: relative;
     z-index: 2;
+    color: #000; /* Light mode text color */
 }
 
 .close-button {

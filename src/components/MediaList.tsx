@@ -87,11 +87,7 @@ const MediaList: React.FC = () => {
 
     const handleDarkModeChange = () => {
         setDarkMode(prevMode => !prevMode);
-        if (darkMode) {
-            document.body.classList.remove('dark-mode');
-        } else {
-            document.body.classList.add('dark-mode');
-        }
+        document.body.classList.toggle('dark-mode', !darkMode);
     };
 
     return (

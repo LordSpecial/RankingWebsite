@@ -12,12 +12,13 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
-    if (!show) {
-        return null;
-    }
+    if (!show) return null;
 
-    const releaseYear = item.release_date ? new Date(item.release_date).getFullYear() :
-        item.first_air_date ? new Date(item.first_air_date).getFullYear() : 'N/A';
+    const releaseYear = item.release_date
+        ? new Date(item.release_date).getFullYear()
+        : item.first_air_date
+            ? new Date(item.first_air_date).getFullYear()
+            : 'N/A';
 
     return (
         <div className={`modal-overlay ${darkMode ? 'dark-mode' : ''}`}>
