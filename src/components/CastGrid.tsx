@@ -1,6 +1,6 @@
 import React from 'react';
 import { CastMember } from '../types.ts';
-import '../CastGrid.css';
+import '../assets/styles/CastGrid.css';
 
 // Define the props for the CastGrid component
 interface CastGridProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
-import '../Controls.css';
+import '../assets/styles/Controls.css';
 
 // Define the props for the Controls component
 interface ControlsProps {

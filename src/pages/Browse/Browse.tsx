@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../MediaList.css';
-import Header from './Header.tsx';
-import Controls from './Controls.tsx';
-import MediaGrid from './MediaGrid.tsx';
-import { MediaItem, CrewMember, CastMember, Keyword } from '../types.ts';
+import './Browse.css';
+import Header from '../../components/Header.tsx';
+import Controls from '../../components/Controls.tsx';
+import MediaGrid from '../../components/MediaGrid.tsx';
+import { MediaItem, CrewMember, CastMember, Keyword } from '../../types.ts';
 
 // Functional component to display the media list
-const MediaList: React.FC = () => {
+const Browse: React.FC = () => {
     const [mediaItems, setMediaItems] = useState<MediaItem[]>([]); // State for media items
     const [mediaType, setMediaType] = useState<'movie' | 'tv' | 'anime'>('movie'); // State for media type
     const [page, setPage] = useState(1); // State for current page
@@ -134,4 +134,4 @@ const MediaList: React.FC = () => {
     );
 };
 
-export default MediaList; // Export the MediaList component
+export default Browse; // Export the Browse component
