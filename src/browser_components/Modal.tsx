@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import CastGrid from './CastGrid';
+import CastGrid from './CastGrid.tsx';
 import '../Modal.css';
-import { MediaItem } from '../types';
+import { MediaItem } from '../types.ts';
 
 // Define the props for the Modal component
 interface ModalProps {

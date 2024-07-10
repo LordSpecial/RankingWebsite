@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
-import { MediaItem } from '../types';
+import Modal from './Modal.tsx';
+import { MediaItem } from '../types.ts';
 
 // Define the props for the MediaItemComponent
 interface MediaItemProps {

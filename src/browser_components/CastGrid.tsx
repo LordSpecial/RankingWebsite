@@ -1,5 +1,5 @@
 import React from 'react';
-import { CastMember } from '../types';
+import { CastMember } from '../types.ts';
 import '../CastGrid.css';
 
 // Define the props for the CastGrid component

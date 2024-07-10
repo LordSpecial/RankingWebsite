@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../MediaList.css';
-import Header from './Header';
-import Controls from './Controls';
-import MediaGrid from './MediaGrid';
-import { MediaItem, CrewMember, CastMember, Keyword } from '../types';
+import Header from './Header.tsx';
+import Controls from './Controls.tsx';
+import MediaGrid from './MediaGrid.tsx';
+import { MediaItem, CrewMember, CastMember, Keyword } from '../types.ts';
 
 // Functional component to display the media list
 const MediaList: React.FC = () => {

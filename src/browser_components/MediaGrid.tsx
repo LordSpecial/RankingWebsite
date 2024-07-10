@@ -1,6 +1,6 @@
 import React from 'react';
-import MediaItemComponent from './MediaItem';
-import { MediaItem } from '../types';
+import MediaItemComponent from './MediaItem.tsx';
+import { MediaItem } from '../types.ts';
 
 interface MediaGridProps {
     mediaItems: MediaItem[];
