@@ -1,8 +1,8 @@
 import { db } from '../firebaseConfig';
 import { collection, getDocs, getDoc, addDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
-import { MediaItem } from '../types';
+import { FilmData } from '../types';
 
-const fetchSeenFilms = async (): Promise<MediaItem[]> => {
+const fetchSeenFilms = async (): Promise<FilmData[]> => {
     const seenFilmsCollection = collection(db, 'seenFilms');
     const seenFilmsSnapshot = await getDocs(seenFilmsCollection);
     return seenFilmsSnapshot.docs.map(doc => {
@@ -13,14 +13,41 @@ const fetchSeenFilms = async (): Promise<MediaItem[]> => {
             elo: data.elo,
             manualRating: data.manualRating,
             posterUrl: data.posterUrl,
-        } as MediaItem;
+            key: `seen-${data.filmId}`,
+            id: data.filmId,
+            overview: data.overview || '',
+            poster_path: data.poster_path || '',
+            backdrop_path: data.backdrop_path || '',
+            vote_average: data.vote_average || 0,
+            runtime: data.runtime || 0,
+            genres: data.genres || [],
+        } as FilmData;
     });
 };
-const fetchUnseenFilms = async (): Promise<MediaItem[]> => {
+
+const fetchUnseenFilms = async (): Promise<FilmData[]> => {
     const unseenFilmsCollection = collection(db, 'unseenFilms');
     const unseenFilmsSnapshot = await getDocs(unseenFilmsCollection);
-    return unseenFilmsSnapshot.docs.map(doc => doc.data() as MediaItem);
+    return unseenFilmsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            filmId: data.filmId,
+            title: data.filmTitle,
+            elo: data.elo,
+            manualRating: data.manualRating,
+            posterUrl: data.posterUrl,
+            key: `unseen-${data.filmId}`,
+            id: data.filmId,
+            overview: data.overview || '',
+            poster_path: data.poster_path || '',
+            backdrop_path: data.backdrop_path || '',
+            vote_average: data.vote_average || 0,
+            runtime: data.runtime || 0,
+            genres: data.genres || [],
+        } as FilmData;
+    });
 };
+
 
 const checkFilmExists = async (filmId: number): Promise<boolean> => {
     const filmDoc = await getDoc(doc(db, 'films', filmId.toString()));

@@ -6,22 +6,22 @@ import { auth } from '../firebaseConfig';
 
 const useDiscover = () => {
     const [film, setFilm] = useState<MediaItem | null>(null);
-    const [manualRating, setManualRating] = useState<number>(0); // New state for user rating
+    const [manualRating, setManualRating] = useState<number>(0);
 
     const loadNewFilm = async () => {
         try {
             console.log('Fetching a new film...');
-            let newFilm;
-            let exists;
+            let newFilm: MediaItem;
+            let exists: boolean;
             do {
                 newFilm = await fetchRandomFilm();
-                console.log(`Fetched film: ${newFilm.title} (ID: ${newFilm.id})`);
+                console.log(`Fetched film: ${newFilm.title || newFilm.name} (ID: ${newFilm.id})`);
                 exists = await checkFilmExists(newFilm.id);
                 if (exists) {
                     console.log(`Film ID ${newFilm.id} already exists in the database. Fetching another film...`);
                 }
             } while (exists);
-            console.log(`Selected film: ${newFilm.title} (ID: ${newFilm.id})`);
+            console.log(`Selected film: ${newFilm.title || newFilm.name} (ID: ${newFilm.id})`);
             setFilm(newFilm);
             setManualRating(0); // Reset rating
         } catch (error) {
@@ -32,11 +32,11 @@ const useDiscover = () => {
     const handleSeen = async () => {
         if (film) {
             try {
-                console.log(`Marking film as seen: ${film.title} (ID: ${film.id})`);
+                console.log(`Marking film as seen: ${film.title || film.name} (ID: ${film.id})`);
                 const currentElo = 1000; // Assuming initial Elo score is 1000
                 const eloComparisonCount = 0; // Initial Elo comparison count
-                await addSeenFilm(film.id, film.title, manualRating, currentElo, eloComparisonCount, film.poster_path);
-                await updateEloScore(film.id, film.title, 'win', manualRating);
+                await addSeenFilm(film.id, film.title || film.name || 'Unknown', manualRating, currentElo, eloComparisonCount, film.poster_path);
+                await updateEloScore(film.id, film.title || film.name || 'Unknown', 'win', manualRating);
             } catch (error) {
                 console.error('Error handling seen interaction:', error);
             }
@@ -47,11 +47,11 @@ const useDiscover = () => {
     const handleNotSeen = async () => {
         if (film) {
             try {
-                console.log(`Marking film as not seen: ${film.title} (ID: ${film.id})`);
+                console.log(`Marking film as not seen: ${film.title || film.name} (ID: ${film.id})`);
                 const currentElo = 1000; // Assuming initial Elo score is 1000
                 const eloComparisonCount = 0; // Initial Elo comparison count
-                await addUnseenFilm(film.id, film.title, currentElo, eloComparisonCount, film.poster_path);
-                await updateEloScore(film.id, film.title, 'lose', 0); // Pass 0 as rating since the film is not seen
+                await addUnseenFilm(film.id, film.title || film.name || 'Unknown', currentElo, eloComparisonCount, film.poster_path);
+                await updateEloScore(film.id, film.title || film.name || 'Unknown', 'lose', 0); // Pass 0 as rating since the film is not seen
             } catch (error) {
                 console.error('Error handling not seen interaction:', error);
             }
@@ -61,7 +61,7 @@ const useDiscover = () => {
 
     useEffect(() => {
         console.log('Initializing Discover page...');
-        auth.onAuthStateChanged(user => {
+        auth.onAuthStateChanged((user: any) => {
             if (user) {
                 console.log('User is signed in. Loading new film...');
                 loadNewFilm();

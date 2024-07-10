@@ -66,13 +66,13 @@ const fetchRandomFilm = async (): Promise<MediaItem> => {
         ...film,
         runtime: details.runtime,
         genres: details.genres,
-        director: details.credits ? details.credits.crew.find((crewMember) => crewMember.job === 'Director')?.name : 'N/A',
-        cast: details.credits ? details.credits.cast.slice(0, 15).map((castMember) => ({
+        director: details.credits ? details.credits.crew.find((crewMember: any) => crewMember.job === 'Director')?.name : 'N/A',
+        cast: details.credits ? details.credits.cast.slice(0, 15).map((castMember: any) => ({
             name: castMember.name,
             character: castMember.character,
             profile_path: castMember.profile_path
         })) : [],
-        tags: details.keywords?.keywords?.map((keyword) => keyword.name) || []
+        tags: details.keywords?.keywords?.map((keyword: any) => keyword.name) || []
     };
 };
 export { fetchMediaItems, fetchRandomFilm };

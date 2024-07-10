@@ -1,4 +1,3 @@
-// types.ts
 export interface MediaItem {
     id: number;
     title?: string;
@@ -14,6 +13,14 @@ export interface MediaItem {
     director?: string;
     cast?: { name: string; character: string; profile_path?: string }[];
     tags?: string[];
+}
+
+export interface FilmData extends MediaItem {
+    filmId: number;
+    elo: number;
+    manualRating: number;
+    posterUrl: string;
+    key: string;
 }
 
 export interface CrewMember {

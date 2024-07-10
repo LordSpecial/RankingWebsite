@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { fetchSeenFilms, fetchUnseenFilms } from '../../services/firebaseService';
-import { MediaItem } from '../../types';
+import { FilmData } from '../../types';
 import './Library.css';
 
 const Library: React.FC = () => {
-    const [films, setFilms] = useState<MediaItem[]>([]);
+    const [films, setFilms] = useState<FilmData[]>([]);
     const [filter, setFilter] = useState<'all' | 'seen' | 'unseen'>('all');
 
     useEffect(() => {
@@ -13,17 +13,14 @@ const Library: React.FC = () => {
             try {
                 if (filter === 'seen') {
                     const seenFilms = await fetchSeenFilms();
-                    setFilms(seenFilms.map(film => ({ ...film, key: `seen-${film.filmId}` })));
+                    setFilms(seenFilms);
                 } else if (filter === 'unseen') {
                     const unseenFilms = await fetchUnseenFilms();
-                    setFilms(unseenFilms.map(film => ({ ...film, key: `unseen-${film.filmId}` })));
+                    setFilms(unseenFilms);
                 } else {
                     const seenFilms = await fetchSeenFilms();
                     const unseenFilms = await fetchUnseenFilms();
-                    setFilms([
-                        ...seenFilms.map(film => ({ ...film, key: `seen-${film.filmId}` })),
-                        ...unseenFilms.map(film => ({ ...film, key: `unseen-${film.filmId}` }))
-                    ]);
+                    setFilms([...seenFilms, ...unseenFilms]);
                 }
             } catch (error) {
                 console.error('Error fetching films:', error);
@@ -60,8 +57,8 @@ const Library: React.FC = () => {
                 <div className="film-grid">
                     {films.map(film => (
                         <div key={film.key} className="film-card">
-                            <h3>{film.title}</h3>
-                            <img src={`https://image.tmdb.org/t/p/w500${film.posterUrl}`} alt={film.title} />
+                            <h3>{film.title || film.name}</h3>
+                            <img src={`https://image.tmdb.org/t/p/w500${film.posterUrl}`} alt={film.title || film.name} />
                             <p>{film.overview}</p>
                         </div>
                     ))}
@@ -72,4 +69,3 @@ const Library: React.FC = () => {
 };
 
 export default Library;
-    

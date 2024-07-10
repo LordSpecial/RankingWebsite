@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { fetchSeenFilms } from '../../services/firebaseService';
-import { MediaItem } from '../../types';
+import { FilmData } from '../../types';
 import './EloResults.css';
 
 const EloResults: React.FC = () => {
-    const [films, setFilms] = useState<MediaItem[]>([]);
+    const [films, setFilms] = useState<FilmData[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,11 +41,11 @@ const EloResults: React.FC = () => {
                             <td>
                                 <img
                                     src={`https://image.tmdb.org/t/p/w200${film.posterUrl}`}
-                                    alt={film.title}
+                                    alt={film.title || film.name}
                                     className="mini-poster"
                                 />
                             </td>
-                            <td>{film.title}</td>
+                            <td>{film.title || film.name}</td>
                             <td>{film.elo}</td>
                             <td>{film.manualRating}</td>
                         </tr>
