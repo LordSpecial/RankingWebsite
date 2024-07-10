@@ -5,9 +5,17 @@ import { MediaItem } from '../types';
 const fetchSeenFilms = async (): Promise<MediaItem[]> => {
     const seenFilmsCollection = collection(db, 'seenFilms');
     const seenFilmsSnapshot = await getDocs(seenFilmsCollection);
-    return seenFilmsSnapshot.docs.map(doc => doc.data() as MediaItem);
+    return seenFilmsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return {
+            filmId: data.filmId,
+            title: data.filmTitle,
+            elo: data.elo,
+            manualRating: data.manualRating,
+            posterUrl: data.posterUrl,
+        } as MediaItem;
+    });
 };
-
 const fetchUnseenFilms = async (): Promise<MediaItem[]> => {
     const unseenFilmsCollection = collection(db, 'unseenFilms');
     const unseenFilmsSnapshot = await getDocs(unseenFilmsCollection);
