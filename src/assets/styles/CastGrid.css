@@ -75,21 +75,21 @@
 }
 
 /* Styling the scrollbar track and thumb for Firefox */
-.cast-grid-container::-moz-scrollbar {
-    width: 8px; /* Set the width of the scrollbar */
-    height: 8px; /* Set the height of the scrollbar */
-}
+/*.cast-grid-container::-moz-scrollbar {*/
+/*    width: 8px; !* Set the width of the scrollbar *!*/
+/*    height: 8px; !* Set the height of the scrollbar *!*/
+/*}*/
 
-.cast-grid-container::-moz-scrollbar-track {
-    background: #f1f1f1; /* Background of the scrollbar track */
-    border-radius: 10px; /* Rounded corners for the track */
-}
+/*.cast-grid-container::-moz-scrollbar-track {*/
+/*    background: #f1f1f1; !* Background of the scrollbar track *!*/
+/*    border-radius: 10px; !* Rounded corners for the track *!*/
+/*}*/
 
-.cast-grid-container::-moz-scrollbar-thumb {
-    background: #007bff; /* Accent color for the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the thumb */
-}
+/*.cast-grid-container::-moz-scrollbar-thumb {*/
+/*    background: #007bff; !* Accent color for the scrollbar thumb *!*/
+/*    border-radius: 10px; !* Rounded corners for the thumb *!*/
+/*}*/
 
-.cast-grid-container::-moz-scrollbar-thumb:hover {
-    background: #0056b3; /* Darker accent color when hovering over the scrollbar thumb */
-}
+/*.cast-grid-container::-moz-scrollbar-thumb:hover {*/
+/*    background: #0056b3; !* Darker accent color when hovering over the scrollbar thumb *!*/
+/*}*/

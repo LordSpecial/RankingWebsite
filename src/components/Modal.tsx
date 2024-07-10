@@ -1,30 +1,27 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import CastGrid from './CastGrid.tsx';
+import CastGrid from './CastGrid';
 import '../assets/styles/Modal.css';
-import { MediaItem } from '../types.ts';
+import { MediaItem } from '../types';
 
-// Define the props for the Modal component
 interface ModalProps {
-    show: boolean; // Boolean to indicate if the modal is visible
-    onClose: () => void; // Function to handle closing the modal
-    item: MediaItem; // Media item to be displayed in the modal
-    darkMode: boolean; // Boolean to indicate if dark mode is enabled
+    show: boolean;
+    onClose: () => void;
+    item: MediaItem;
 }
 
-// Functional component to display a modal with media item details
-const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
-    if (!show) return null; // Return null if show is false
+const Modal: React.FC<ModalProps> = ({ show, onClose, item }) => {
+    if (!show) return null;
 
     const releaseYear = item.release_date
         ? new Date(item.release_date).getFullYear()
         : item.first_air_date
             ? new Date(item.first_air_date).getFullYear()
-            : 'N/A'; // Calculate release year
+            : 'N/A';
 
     return (
-        <div className={`modal-overlay ${darkMode ? 'dark-mode' : ''}`}>
+        <div className="modal-overlay">
             <div className="modal-container">
                 <div className="modal-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${item.backdrop_path})` }}></div>
                 <button className="close-button" onClick={onClose}>
@@ -46,7 +43,6 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
                                 {item.tags && item.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
                             </div>
                             <CastGrid cast={item.cast || []} />
-                            {/* Render cast grid if cast is available*/}
                         </div>
                     </div>
                 </div>
@@ -55,4 +51,4 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
     );
 };
 
-export default Modal; // Export the Modal component
+export default Modal;

@@ -1,30 +1,22 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import '../assets/styles/Controls.css';
 
-// Define the props for the Controls component
 interface ControlsProps {
-    mediaType: 'movie' | 'tv' | 'anime'; // Type of media
-    itemsPerPage: number; // Number of items per page
-    itemsPerRow: number; // Number of items per row
-    darkMode: boolean; // Boolean to indicate if dark mode is enabled
-    onMediaTypeChange: (newType: 'movie' | 'tv' | 'anime') => void; // Function to handle media type change
-    onItemsPerPageChange: (value: number) => void; // Function to handle items per page change
-    onItemsPerRowChange: (value: number) => void; // Function to handle items per row change
-    onDarkModeChange: () => void; // Function to handle dark mode change
+    mediaType: 'movie' | 'tv' | 'anime';
+    itemsPerPage: number;
+    itemsPerRow: number;
+    onMediaTypeChange: (newType: 'movie' | 'tv' | 'anime') => void;
+    onItemsPerPageChange: (value: number) => void;
+    onItemsPerRowChange: (value: number) => void;
 }
 
-// Functional component to display controls for media type, items per page, items per row, and dark mode
 const Controls: React.FC<ControlsProps> = ({
                                                mediaType,
                                                itemsPerPage,
                                                itemsPerRow,
-                                               darkMode,
                                                onMediaTypeChange,
                                                onItemsPerPageChange,
-                                               onItemsPerRowChange,
-                                               onDarkModeChange,
+                                               onItemsPerRowChange
                                            }) => (
     <div className="row justify-content-between align-items-center mb-4">
         <div className="col-auto">
@@ -62,15 +54,6 @@ const Controls: React.FC<ControlsProps> = ({
                         <option key={num} value={num}>{num}</option>
                     ))}
                 </select>
-            </label>
-            <label>
-                <div className="toggle-switch">
-                    <input type="checkbox" checked={darkMode} onChange={onDarkModeChange} />
-                    <span className="slider round">
-                        <span className="icon sun-icon"><FontAwesomeIcon icon={faSun} /></span>
-                        <span className="icon moon-icon"><FontAwesomeIcon icon={faMoon} /></span>
-                    </span>
-                </div>
             </label>
         </div>
     </div>
