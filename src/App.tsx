@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Browse from "./pages/Browse/Browse";
+import Browse from './pages/Browse/Browse';
 import Discover from './pages/Discover/Discover';
 import Rate from './pages/Rate/Rate';
 import EloResults from './pages/EloResults/EloResults';
