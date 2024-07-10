@@ -13,6 +13,11 @@
     margin: 0 10px;
 }
 
+.filter-buttons .active {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
 .film-grid {
     display: flex;
     flex-wrap: wrap;

@@ -13,14 +13,17 @@ const Library: React.FC = () => {
             try {
                 if (filter === 'seen') {
                     const seenFilms = await fetchSeenFilms();
-                    setFilms(seenFilms);
+                    setFilms(seenFilms.map(film => ({ ...film, key: `seen-${film.filmId}` })));
                 } else if (filter === 'unseen') {
                     const unseenFilms = await fetchUnseenFilms();
-                    setFilms(unseenFilms);
+                    setFilms(unseenFilms.map(film => ({ ...film, key: `unseen-${film.filmId}` })));
                 } else {
                     const seenFilms = await fetchSeenFilms();
                     const unseenFilms = await fetchUnseenFilms();
-                    setFilms([...seenFilms, ...unseenFilms]);
+                    setFilms([
+                        ...seenFilms.map(film => ({ ...film, key: `seen-${film.filmId}` })),
+                        ...unseenFilms.map(film => ({ ...film, key: `unseen-${film.filmId}` }))
+                    ]);
                 }
             } catch (error) {
                 console.error('Error fetching films:', error);
@@ -35,13 +38,28 @@ const Library: React.FC = () => {
             <Navbar />
             <div className="library-content">
                 <div className="filter-buttons">
-                    <button className="btn btn-primary" onClick={() => setFilter('all')}>All</button>
-                    <button className="btn btn-primary" onClick={() => setFilter('seen')}>Seen</button>
-                    <button className="btn btn-primary" onClick={() => setFilter('unseen')}>Unseen</button>
+                    <button
+                        className={`btn btn-primary ${filter === 'all' ? 'active' : ''}`}
+                        onClick={() => setFilter('all')}
+                    >
+                        All
+                    </button>
+                    <button
+                        className={`btn btn-primary ${filter === 'seen' ? 'active' : ''}`}
+                        onClick={() => setFilter('seen')}
+                    >
+                        Seen
+                    </button>
+                    <button
+                        className={`btn btn-primary ${filter === 'unseen' ? 'active' : ''}`}
+                        onClick={() => setFilter('unseen')}
+                    >
+                        Unseen
+                    </button>
                 </div>
                 <div className="film-grid">
                     {films.map(film => (
-                        <div key={film.id} className="film-card">
+                        <div key={film.key} className="film-card">
                             <h3>{film.title}</h3>
                             <img src={`https://image.tmdb.org/t/p/w500${film.posterUrl}`} alt={film.title} />
                             <p>{film.overview}</p>
@@ -54,3 +72,4 @@ const Library: React.FC = () => {
 };
 
 export default Library;
+    
