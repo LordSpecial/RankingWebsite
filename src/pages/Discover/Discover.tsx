@@ -25,7 +25,6 @@ const Discover: React.FC = () => {
                                 onChange={(e) => setManualRating(Number(e.target.value))}
                                 min="0"
                                 max="10"
-                                disabled={film === null}
                             />
                         </div>
                         <div className="buttons">

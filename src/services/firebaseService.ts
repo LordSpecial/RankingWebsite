@@ -1,5 +1,5 @@
 import { db } from '../firebaseConfig';
-import { collection, getDocs, addDoc, getDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, addDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { MediaItem } from '../types';
 
 const fetchSeenFilms = async (): Promise<MediaItem[]> => {
@@ -12,6 +12,11 @@ const fetchUnseenFilms = async (): Promise<MediaItem[]> => {
     const unseenFilmsCollection = collection(db, 'unseenFilms');
     const unseenFilmsSnapshot = await getDocs(unseenFilmsCollection);
     return unseenFilmsSnapshot.docs.map(doc => doc.data() as MediaItem);
+};
+
+const checkFilmExists = async (filmId: number): Promise<boolean> => {
+    const filmDoc = await getDoc(doc(db, 'films', filmId.toString()));
+    return filmDoc.exists();
 };
 
 const addSeenFilm = async (filmId: number, filmTitle: string, manualRating: number, eloScore: number, eloComparisonCount: number, posterUrl: string) => {
@@ -86,4 +91,4 @@ const calculateNewElo = (currentElo: number, result: 'win' | 'lose'): number => 
     return currentElo + kFactor * (actualScore - expectedScore);
 };
 
-export { fetchSeenFilms, fetchUnseenFilms, addSeenFilm, addUnseenFilm, updateEloScore };
+export { fetchSeenFilms, fetchUnseenFilms, checkFilmExists, addSeenFilm, addUnseenFilm, updateEloScore };

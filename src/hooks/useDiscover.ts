@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MediaItem } from '../types';
 import { fetchRandomFilm } from '../services/mediaService';
-import { addSeenFilm, addUnseenFilm, updateEloScore } from '../services/firebaseService';
+import { checkFilmExists, addSeenFilm, addUnseenFilm, updateEloScore } from '../services/firebaseService';
 import { auth } from '../firebaseConfig';
 
 const useDiscover = () => {
@@ -10,7 +10,12 @@ const useDiscover = () => {
 
     const loadNewFilm = async () => {
         try {
-            const newFilm = await fetchRandomFilm();
+            let newFilm;
+            let exists;
+            do {
+                newFilm = await fetchRandomFilm();
+                exists = await checkFilmExists(newFilm.id);
+            } while (exists);
             setFilm(newFilm);
             setManualRating(0); // Reset rating
         } catch (error) {
