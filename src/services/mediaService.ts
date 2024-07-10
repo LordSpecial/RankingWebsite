@@ -50,10 +50,13 @@ const fetchMediaItems = async (mediaType: 'movie' | 'tv' | 'anime', page: number
 };
 
 const fetchRandomFilm = async (): Promise<MediaItem> => {
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`;
+    const totalPages = 500; // Example total pages to cover a wide range of films
+    const randomPage = Math.floor(Math.random() * totalPages) + 1;
+    const randomIndex = Math.floor(Math.random() * tmdbPageSize);
+
+    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${randomPage}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
-    const randomIndex = Math.floor(Math.random() * data.results.length);
     const film = data.results[randomIndex];
 
     const detailsResponse = await fetch(`https://api.themoviedb.org/3/movie/${film.id}?api_key=${apiKey}&language=en-US&append_to_response=credits`);
@@ -63,14 +66,13 @@ const fetchRandomFilm = async (): Promise<MediaItem> => {
         ...film,
         runtime: details.runtime,
         genres: details.genres,
-        director: details.credits ? details.credits.crew.find((crewMember: CrewMember) => crewMember.job === 'Director')?.name : 'N/A',
-        cast: details.credits ? details.credits.cast.slice(0, 15).map((castMember: CastMember) => ({
+        director: details.credits ? details.credits.crew.find((crewMember) => crewMember.job === 'Director')?.name : 'N/A',
+        cast: details.credits ? details.credits.cast.slice(0, 15).map((castMember) => ({
             name: castMember.name,
             character: castMember.character,
             profile_path: castMember.profile_path
         })) : [],
-        tags: details.keywords?.keywords?.map((keyword: Keyword) => keyword.name) || []
+        tags: details.keywords?.keywords?.map((keyword) => keyword.name) || []
     };
 };
-
 export { fetchMediaItems, fetchRandomFilm };

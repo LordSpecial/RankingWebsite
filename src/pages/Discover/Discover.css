@@ -1,3 +1,8 @@
+.discover-container {
+    max-width: 80%; /* Adjust the width as needed */
+    margin: auto;
+}
+
 .discover-content {
     display: flex;
     flex-direction: column;
@@ -6,15 +11,39 @@
 }
 
 .film-card {
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 800px; /* Adjust the max width as needed */
+    margin-bottom: 20px;
 }
 
-.film-card img {
+.film-card .card-img-top {
     width: 100%;
     height: auto;
     margin-bottom: 20px;
+}
+
+.film-card .card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the body takes full height */
+}
+
+.film-description {
+    flex-grow: 1; /* Make the description take up available space */
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Limit to 5 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rating {
+    margin-bottom: 20px;
+}
+
+.rating label {
+    display: block;
+    margin-bottom: 5px;
 }
 
 .buttons {

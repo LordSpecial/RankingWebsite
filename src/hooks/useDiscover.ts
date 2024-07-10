@@ -10,12 +10,18 @@ const useDiscover = () => {
 
     const loadNewFilm = async () => {
         try {
+            console.log('Fetching a new film...');
             let newFilm;
             let exists;
             do {
                 newFilm = await fetchRandomFilm();
+                console.log(`Fetched film: ${newFilm.title} (ID: ${newFilm.id})`);
                 exists = await checkFilmExists(newFilm.id);
+                if (exists) {
+                    console.log(`Film ID ${newFilm.id} already exists in the database. Fetching another film...`);
+                }
             } while (exists);
+            console.log(`Selected film: ${newFilm.title} (ID: ${newFilm.id})`);
             setFilm(newFilm);
             setManualRating(0); // Reset rating
         } catch (error) {
@@ -26,6 +32,7 @@ const useDiscover = () => {
     const handleSeen = async () => {
         if (film) {
             try {
+                console.log(`Marking film as seen: ${film.title} (ID: ${film.id})`);
                 const currentElo = 1000; // Assuming initial Elo score is 1000
                 const eloComparisonCount = 0; // Initial Elo comparison count
                 await addSeenFilm(film.id, film.title, manualRating, currentElo, eloComparisonCount, film.poster_path);
@@ -40,6 +47,7 @@ const useDiscover = () => {
     const handleNotSeen = async () => {
         if (film) {
             try {
+                console.log(`Marking film as not seen: ${film.title} (ID: ${film.id})`);
                 const currentElo = 1000; // Assuming initial Elo score is 1000
                 const eloComparisonCount = 0; // Initial Elo comparison count
                 await addUnseenFilm(film.id, film.title, currentElo, eloComparisonCount, film.poster_path);
@@ -52,8 +60,10 @@ const useDiscover = () => {
     };
 
     useEffect(() => {
+        console.log('Initializing Discover page...');
         auth.onAuthStateChanged(user => {
             if (user) {
+                console.log('User is signed in. Loading new film...');
                 loadNewFilm();
             } else {
                 console.log('User not signed in');
