@@ -1,3 +1,6 @@
+/* EloResults.css */
+@import '../../assets/styles/common.css';
+
 .elo-results-container {
     max-width: 80%;
     margin: auto;

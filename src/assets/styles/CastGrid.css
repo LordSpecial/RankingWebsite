@@ -1,27 +1,29 @@
 /* CastGrid.css */
+@import './common.css';
+
 .cast-grid-container {
-    overflow-x: auto; /* Enable horizontal scrolling by default */
-    overflow-y: hidden; /* Hide vertical scrollbar by default */
-    white-space: nowrap; /* Prevent wrapping */
-    max-height: 200px; /* Set a maximum height for the cast grid */
-    margin-bottom: 20px; /* Add padding below the cast grid */
-    transition: overflow-y 0.3s; /* Smooth transition for scrollbar */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    max-height: 200px;
+    margin-bottom: 20px;
+    transition: overflow-y 0.3s;
 }
 
 .cast-grid-container:hover {
-    overflow-y: auto; /* Enable vertical scrolling on hover */
+    overflow-y: auto;
 }
 
 .cast-grid {
     display: flex;
-    flex-direction: row; /* Keep the grid horizontal */
+    flex-direction: row;
 }
 
 .cast-member {
-    flex: 0 0 120px; /* Set a fixed width */
+    flex: 0 0 120px;
     margin-right: 10px;
     text-align: center;
-    overflow: hidden; /* Ensure text does not overflow */
+    overflow: hidden;
 }
 
 .cast-headshot {
@@ -35,61 +37,15 @@
 .cast-name {
     font-weight: bold;
     margin-bottom: 5px;
-    white-space: normal; /* Allow wrapping */
-    overflow: hidden; /* Hide overflow text */
-    text-overflow: ellipsis; /* Ellipsis for overflow text */
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cast-character {
     font-style: italic;
     color: #555;
-    white-space: normal; /* Allow wrapping */
-    overflow: hidden; /* Hide overflow text */
-    text-overflow: ellipsis; /* Ellipsis for overflow text */
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
-/* Custom scrollbar styles for WebKit browsers */
-.cast-grid-container::-webkit-scrollbar {
-    width: 8px; /* Set the width of the scrollbar */
-    height: 8px; /* Set the height of the scrollbar */
-}
-
-.cast-grid-container::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Background of the scrollbar track */
-    border-radius: 10px; /* Rounded corners for the track */
-}
-
-.cast-grid-container::-webkit-scrollbar-thumb {
-    background: #007bff; /* Accent color for the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the thumb */
-}
-
-.cast-grid-container::-webkit-scrollbar-thumb:hover {
-    background: #0056b3; /* Darker accent color when hovering over the scrollbar thumb */
-}
-
-/* Custom scrollbar styles for Firefox */
-.cast-grid-container {
-    scrollbar-width: thin; /* Set the width of the scrollbar */
-    scrollbar-color: #007bff #f1f1f1; /* Set the thumb and track color */
-}
-
-/* Styling the scrollbar track and thumb for Firefox */
-/*.cast-grid-container::-moz-scrollbar {*/
-/*    width: 8px; !* Set the width of the scrollbar *!*/
-/*    height: 8px; !* Set the height of the scrollbar *!*/
-/*}*/
-
-/*.cast-grid-container::-moz-scrollbar-track {*/
-/*    background: #f1f1f1; !* Background of the scrollbar track *!*/
-/*    border-radius: 10px; !* Rounded corners for the track *!*/
-/*}*/
-
-/*.cast-grid-container::-moz-scrollbar-thumb {*/
-/*    background: #007bff; !* Accent color for the scrollbar thumb *!*/
-/*    border-radius: 10px; !* Rounded corners for the thumb *!*/
-/*}*/
-
-/*.cast-grid-container::-moz-scrollbar-thumb:hover {*/
-/*    background: #0056b3; !* Darker accent color when hovering over the scrollbar thumb *!*/
-/*}*/

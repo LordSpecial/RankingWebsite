@@ -6,7 +6,7 @@ import './Library.css';
 
 const Library: React.FC = () => {
     const [films, setFilms] = useState<FilmData[]>([]);
-    const [filter, setFilter] = useState<'all' | 'seen' | 'unseen'>('all');
+    const [filter, setFilter] = useState<'all' | 'seen' | 'unseen'>('seen'); // Set default to 'seen'
 
     useEffect(() => {
         const fetchData = async () => {

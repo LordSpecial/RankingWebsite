@@ -1,5 +1,8 @@
+/* Discover.css */
+@import '../../assets/styles/common.css';
+
 .discover-container {
-    max-width: 80%; /* Adjust the width as needed */
+    max-width: 80%;
     margin: auto;
 }
 
@@ -12,7 +15,7 @@
 
 .film-card {
     width: 100%;
-    max-width: 800px; /* Adjust the max width as needed */
+    max-width: 800px;
     margin-bottom: 20px;
 }
 
@@ -25,13 +28,13 @@
 .film-card .card-body {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Ensure the body takes full height */
+    height: 100%;
 }
 
 .film-description {
-    flex-grow: 1; /* Make the description take up available space */
+    flex-grow: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 5; /* Limit to 5 lines */
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
