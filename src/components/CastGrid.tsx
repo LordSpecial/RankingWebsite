@@ -2,12 +2,15 @@ import React from 'react';
 import { CastMember } from '../types';
 import '../CastGrid.css';
 
+// Define the props for the CastGrid component
 interface CastGridProps {
-    cast: CastMember[];
+    cast: CastMember[]; // Array of cast members
 }
 
-const defaultImageUrl = 'https://via.placeholder.com/92'; // URL to a blank avatar icon or a placeholder image
+// URL to a blank avatar icon or a placeholder image
+const defaultImageUrl = 'https://via.placeholder.com/92';
 
+// Functional component to display a grid of cast members
 const CastGrid: React.FC<CastGridProps> = ({ cast }) => (
     <div className="cast-grid-container">
         <div className="cast-grid">
@@ -26,4 +29,4 @@ const CastGrid: React.FC<CastGridProps> = ({ cast }) => (
     </div>
 );
 
-export default CastGrid;
+export default CastGrid; // Export the CastGrid component

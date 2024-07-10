@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import { MediaItem } from '../types';
 
+// Define the props for the MediaItemComponent
 interface MediaItemProps {
-    item: MediaItem;
-    mediaType: 'movie' | 'tv' | 'anime';
-    darkMode: boolean;
+    item: MediaItem; // Media item to be displayed
+    mediaType: 'movie' | 'tv' | 'anime'; // Type of media
+    darkMode: boolean; // Boolean to indicate if dark mode is enabled
 }
 
+// Functional component to display a single media item
 const MediaItemComponent: React.FC<MediaItemProps> = ({ item, mediaType, darkMode }) => {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false); // State to manage modal visibility
 
-    const handleItemClick = () => setShowModal(true);
-    const handleCloseModal = () => setShowModal(false);
+    const handleItemClick = () => setShowModal(true); // Function to handle item click and show modal
+    const handleCloseModal = () => setShowModal(false); // Function to handle closing the modal
 
     return (
         <>
@@ -32,7 +34,7 @@ const MediaItemComponent: React.FC<MediaItemProps> = ({ item, mediaType, darkMod
                     </div>
                 </div>
             </div>
-            <Modal show={showModal} onClose={handleCloseModal} item={item} darkMode={darkMode} />
+            <Modal show={showModal} onClose={handleCloseModal} item={item} darkMode={darkMode} /> {/*Render modal if showModal is true*/}
         </>
     );
 };

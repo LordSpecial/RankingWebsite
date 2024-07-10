@@ -1,4 +1,4 @@
-import MediaList from './components/MediaList';
+import MediaList from './browser_components/MediaList';
 
 const App: React.FC = () => {
     return (

@@ -5,21 +5,23 @@ import CastGrid from './CastGrid';
 import '../Modal.css';
 import { MediaItem } from '../types';
 
+// Define the props for the Modal component
 interface ModalProps {
-    show: boolean;
-    onClose: () => void;
-    item: MediaItem;
-    darkMode: boolean;
+    show: boolean; // Boolean to indicate if the modal is visible
+    onClose: () => void; // Function to handle closing the modal
+    item: MediaItem; // Media item to be displayed in the modal
+    darkMode: boolean; // Boolean to indicate if dark mode is enabled
 }
 
+// Functional component to display a modal with media item details
 const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
-    if (!show) return null;
+    if (!show) return null; // Return null if show is false
 
     const releaseYear = item.release_date
         ? new Date(item.release_date).getFullYear()
         : item.first_air_date
             ? new Date(item.first_air_date).getFullYear()
-            : 'N/A';
+            : 'N/A'; // Calculate release year
 
     return (
         <div className={`modal-overlay ${darkMode ? 'dark-mode' : ''}`}>
@@ -44,6 +46,7 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
                                 {item.tags && item.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
                             </div>
                             <CastGrid cast={item.cast || []} />
+                            {/* Render cast grid if cast is available*/}
                         </div>
                     </div>
                 </div>
@@ -52,4 +55,4 @@ const Modal: React.FC<ModalProps> = ({ show, onClose, item, darkMode }) => {
     );
 };
 
-export default Modal;
+export default Modal; // Export the Modal component

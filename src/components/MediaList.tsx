@@ -1,4 +1,3 @@
-// MediaList.tsx
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../MediaList.css';
@@ -7,15 +6,26 @@ import Controls from './Controls';
 import MediaGrid from './MediaGrid';
 import { MediaItem, CrewMember, CastMember, Keyword } from '../types';
 
+// Functional component to display the media list
 const MediaList: React.FC = () => {
-    const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
-    const [mediaType, setMediaType] = useState<'movie' | 'tv' | 'anime'>('movie');
-    const [page, setPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
-    const [itemsPerRow, setItemsPerRow] = useState(6);
-    const [darkMode, setDarkMode] = useState(false);
+    const [mediaItems, setMediaItems] = useState<MediaItem[]>([]); // State for media items
+    const [mediaType, setMediaType] = useState<'movie' | 'tv' | 'anime'>('movie'); // State for media type
+    const [page, setPage] = useState(1); // State for current page
+    const [itemsPerPage, setItemsPerPage] = useState(10); // State for items per page
+    const [itemsPerRow, setItemsPerRow] = useState(6); // State for items per row
+    const [darkMode, setDarkMode] = useState(true); // State for dark mode, default to true
 
     useEffect(() => {
+        // Add 'dark-mode' class to the document body when the component mounts
+        if (darkMode) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }, [darkMode]); // Re-run effect when darkMode changes
+
+    useEffect(() => {
+        // Fetch data from TMDb API when mediaType, page, or itemsPerPage changes
         const fetchData = async () => {
             const apiKey = '4bc70abe225997a36d12ccea148b9f10';
             const tmdbPageSize = 20;
@@ -71,31 +81,33 @@ const MediaList: React.FC = () => {
         fetchData();
     }, [page, mediaType, itemsPerPage]);
 
-    const handleNextPage = () => setPage(prevPage => prevPage + 1);
+    const handleNextPage = () => setPage(prevPage => prevPage + 1); // Function to handle next page click
 
-    const handlePrevPage = () => setPage(prevPage => Math.max(prevPage - 1, 1));
+    const handlePrevPage = () => setPage(prevPage => Math.max(prevPage - 1, 1)); // Function to handle previous page click
 
     const handleMediaTypeChange = (newType: 'movie' | 'tv' | 'anime') => {
-        setMediaType(newType);
-        setPage(1);
+        setMediaType(newType); // Function to handle media type change
+        setPage(1); // Reset to first page
     };
 
     const handleItemsPerPageChange = (value: number) => {
-        setItemsPerPage(value);
-        setPage(1);
+        setItemsPerPage(value); // Function to handle items per page change
+        setPage(1); // Reset to first page
     };
 
-    const handleItemsPerRowChange = (value: number) => setItemsPerRow(value);
+    const handleItemsPerRowChange = (value: number) => setItemsPerRow(value); // Function to handle items per row change
 
     const handleDarkModeChange = () => {
-        setDarkMode(prevMode => !prevMode);
-        document.body.classList.toggle('dark-mode', !darkMode);
+        setDarkMode(prevMode => !prevMode); // Function to toggle dark mode
     };
 
     return (
         <div className={`container ${darkMode ? 'dark-mode' : ''}`}>
             <div className="content-wrapper">
+                {/* Render header component */}
                 <Header mediaType={mediaType} />
+
+                {/* Render controls component */}
                 <Controls
                     mediaType={mediaType}
                     itemsPerPage={itemsPerPage}
@@ -106,9 +118,15 @@ const MediaList: React.FC = () => {
                     onItemsPerRowChange={handleItemsPerRowChange}
                     onDarkModeChange={handleDarkModeChange}
                 />
+
+                {/* Render media grid component */}
                 <MediaGrid mediaItems={mediaItems} mediaType={mediaType} itemsPerRow={itemsPerRow} darkMode={darkMode} />
+
                 <div className="d-flex justify-content-center mt-4">
+                    {/* Render previous button */}
                     <button className="btn btn-primary me-2" onClick={handlePrevPage} disabled={page === 1}>Previous</button>
+
+                    {/* Render next button */}
                     <button className="btn btn-primary" onClick={handleNextPage}>Next</button>
                 </div>
             </div>
@@ -116,4 +134,4 @@ const MediaList: React.FC = () => {
     );
 };
 
-export default MediaList;
+export default MediaList; // Export the MediaList component
