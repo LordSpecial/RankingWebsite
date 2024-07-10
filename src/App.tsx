@@ -6,6 +6,7 @@ import Discover from './pages/Discover/Discover';
 import Rate from './pages/Rate/Rate';
 import EloResults from './pages/EloResults/EloResults';
 import Home from './pages/Home/Home';
+import Library from './pages/Library/Library';
 
 const App: React.FC = () => {
     return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
                         <Route path="/rate" element={<Rate />} />
                         <Route path="/elo-results" element={<EloResults />} />
                         <Route path="/browse" element={<Browse />} />
+                        <Route path="/library" element={<Library />} />
                     </Routes>
                 </main>
             </div>

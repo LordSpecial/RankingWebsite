@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MediaItem } from '../types';
 import { fetchRandomFilm } from '../services/mediaService';
-import { addUserInteraction, updateEloScore } from '../services/firebaseService';
+import { addSeenFilm, addUnseenFilm, updateEloScore } from '../services/firebaseService';
 import { auth } from '../firebaseConfig';
 
 const useDiscover = () => {
@@ -23,7 +23,7 @@ const useDiscover = () => {
             try {
                 const currentElo = 1000; // Assuming initial Elo score is 1000
                 const eloComparisonCount = 0; // Initial Elo comparison count
-                await addUserInteraction(film.id, film.title, true, manualRating, currentElo, eloComparisonCount);
+                await addSeenFilm(film.id, film.title, manualRating, currentElo, eloComparisonCount, film.poster_path);
                 await updateEloScore(film.id, film.title, 'win', manualRating);
             } catch (error) {
                 console.error('Error handling seen interaction:', error);
@@ -37,8 +37,8 @@ const useDiscover = () => {
             try {
                 const currentElo = 1000; // Assuming initial Elo score is 1000
                 const eloComparisonCount = 0; // Initial Elo comparison count
-                await addUserInteraction(film.id, film.title, false, manualRating, currentElo, eloComparisonCount);
-                await updateEloScore(film.id, film.title, 'lose', manualRating);
+                await addUnseenFilm(film.id, film.title, currentElo, eloComparisonCount, film.poster_path);
+                await updateEloScore(film.id, film.title, 'lose', 0); // Pass 0 as rating since the film is not seen
             } catch (error) {
                 console.error('Error handling not seen interaction:', error);
             }

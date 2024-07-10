@@ -1,20 +1,47 @@
 import { db } from '../firebaseConfig';
-import { collection, addDoc, getDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, getDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { MediaItem } from '../types';
 
-const addUserInteraction = async (filmId: number, filmTitle: string, seen: boolean, manualRating: number, eloScore: number, eloComparisonCount: number) => {
+const fetchSeenFilms = async (): Promise<MediaItem[]> => {
+    const seenFilmsCollection = collection(db, 'seenFilms');
+    const seenFilmsSnapshot = await getDocs(seenFilmsCollection);
+    return seenFilmsSnapshot.docs.map(doc => doc.data() as MediaItem);
+};
+
+const fetchUnseenFilms = async (): Promise<MediaItem[]> => {
+    const unseenFilmsCollection = collection(db, 'unseenFilms');
+    const unseenFilmsSnapshot = await getDocs(unseenFilmsCollection);
+    return unseenFilmsSnapshot.docs.map(doc => doc.data() as MediaItem);
+};
+
+const addSeenFilm = async (filmId: number, filmTitle: string, manualRating: number, eloScore: number, eloComparisonCount: number, posterUrl: string) => {
     try {
-        await addDoc(collection(db, 'userInteractions'), {
+        await addDoc(collection(db, 'seenFilms'), {
             filmId,
             filmTitle,
-            seen,
             manualRating,
             eloScore,
             eloComparisonCount,
+            posterUrl,
             timestamp: new Date(),
         });
     } catch (error) {
-        console.error('Error saving interaction:', error);
+        console.error('Error saving seen film:', error);
+    }
+};
+
+const addUnseenFilm = async (filmId: number, filmTitle: string, eloScore: number, eloComparisonCount: number, posterUrl: string) => {
+    try {
+        await addDoc(collection(db, 'unseenFilms'), {
+            filmId,
+            filmTitle,
+            eloScore,
+            eloComparisonCount,
+            posterUrl,
+            timestamp: new Date(),
+        });
+    } catch (error) {
+        console.error('Error saving unseen film:', error);
     }
 };
 
@@ -59,4 +86,4 @@ const calculateNewElo = (currentElo: number, result: 'win' | 'lose'): number => 
     return currentElo + kFactor * (actualScore - expectedScore);
 };
 
-export { addUserInteraction, updateEloScore };
+export { fetchSeenFilms, fetchUnseenFilms, addSeenFilm, addUnseenFilm, updateEloScore };

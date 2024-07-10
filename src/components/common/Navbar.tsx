@@ -31,6 +31,9 @@ const Navbar: React.FC = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/browse">Browse</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/library">Library</Link>
+                        </li>
                     </ul>
                     <div className="ms-auto">
                         <div className="form-check form-switch">
