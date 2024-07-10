@@ -31,7 +31,7 @@ const Library: React.FC = () => {
     }, [filter]);
 
     return (
-        <div className="container">
+        <div className="page-container">
             <Navbar />
             <div className="library-content">
                 <div className="filter-buttons">
@@ -57,9 +57,8 @@ const Library: React.FC = () => {
                 <div className="film-grid">
                     {films.map(film => (
                         <div key={film.key} className="film-card">
-                            <h3>{film.title || film.name}</h3>
                             <img src={`https://image.tmdb.org/t/p/w500${film.posterUrl}`} alt={film.title || film.name} />
-                            <p>{film.overview}</p>
+                            <h5>{film.title || film.name}</h5>
                         </div>
                     ))}
                 </div>

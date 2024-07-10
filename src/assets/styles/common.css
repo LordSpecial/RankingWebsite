@@ -1,15 +1,9 @@
 /* common.css */
 
 /* General Container Styles */
-.container {
-    max-width: 80%;
+.page-container {
+    max-width: 80% !important; /* Adjust this value to your desired common width */
     margin: auto;
-}
-
-/* Consistent Page Width */
-.page-width {
-    max-width: 90%; /* Adjust this value as needed for consistency */
-    margin: 0 auto;
 }
 
 /* Flex and Grid Layouts */

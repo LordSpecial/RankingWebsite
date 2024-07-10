@@ -22,9 +22,9 @@ const EloResults: React.FC = () => {
     }, []);
 
     return (
-        <div className="container-fluid elo-results-container">
+        <div className="page-container container-fluid">
             <Navbar />
-            <div className="elo-results-content">
+            <div className="elo-results-container">
                 <h2 className="mb-4">ELO Results</h2>
                 <table className="table table-striped">
                     <thead>

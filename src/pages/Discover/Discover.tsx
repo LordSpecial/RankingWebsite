@@ -7,7 +7,7 @@ const Discover: React.FC = () => {
     const {film, manualRating, setManualRating, handleSeen, handleNotSeen} = useDiscover();
 
     return (
-        <div className="container-fluid discover-container">
+        <div className="page-container container-fluid">
             <Navbar/>
             <div className="discover-content">
                 {film ? (

@@ -1,11 +1,6 @@
 /* Discover.css */
 @import '../../assets/styles/common.css';
 
-.discover-container {
-    max-width: 80%;
-    margin: auto;
-}
-
 .discover-content {
     display: flex;
     flex-direction: column;

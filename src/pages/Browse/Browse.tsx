@@ -4,7 +4,7 @@ import MediaList from '../../components/MediaList.tsx';
 
 const Browse: React.FC = () => {
     return (
-        <div className="container">
+        <div className="page-container">
             <Navbar />
             <MediaList />
         </div>

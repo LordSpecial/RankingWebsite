@@ -2,10 +2,11 @@
 @import '../../assets/styles/common.css';
 
 .library-content {
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin: 20px auto;
 }
 
 .filter-buttons {
