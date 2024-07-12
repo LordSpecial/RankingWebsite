@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import useDarkMode from '../../hooks/useDarkMode';
+import '../../assets/styles/Navbar.css'
 
 const Navbar: React.FC = () => {
     const [darkMode, toggleDarkMode] = useDarkMode();

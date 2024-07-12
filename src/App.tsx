@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import Browse from './pages/Browse/Browse';
 import Discover from './pages/Discover/Discover';
 import Rate from './pages/Rate/Rate';

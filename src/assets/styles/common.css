@@ -87,7 +87,7 @@
 
 .label.movie { background-color: #725ac1; }
 .label.tv { background-color: #4fb0c6; }
-.label.anime { background-color: #3e442b; }
+.label.anime { background-color: #fe842b; }
 
 /* Text Styles */
 .card-title {
@@ -233,3 +233,37 @@ input:checked + .slider .moon-icon { opacity: 1; }
 
 /* Misc */
 .margin-bottom-20 { margin-bottom: 20px; }
+/* Mobile Styles */
+@media (max-width: 990px) {
+    .page-container {
+        max-width: 95%;
+        padding: 0 10px;
+    }
+
+    .card-body {
+        position: static;
+        opacity: 1;
+        background: none;
+    }
+
+    .card:hover .card-body {
+        opacity: 1;
+        background: none;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+        transition: none;
+    }
+
+    .card:hover .card-img-top {
+        filter: none;
+    }
+
+    .grid-cols-2 { grid-template-columns: repeat(1, 1fr); }
+    .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-cols-6 { grid-template-columns: repeat(3, 1fr); }
+    .grid-cols-8 { grid-template-columns: repeat(4, 1fr); }
+    .grid-cols-10 { grid-template-columns: repeat(5, 1fr); }
+}
